@@ -1,0 +1,1 @@
+/Users/henryanfang/repos/rust-lang/chapter_three_exercises/twelve_days_of_christmas/target/debug/twelve_days_of_christmas.dSYM: /Users/henryanfang/repos/rust-lang/chapter_three_exercises/twelve_days_of_christmas/src/main.rs
