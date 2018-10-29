@@ -1,3 +1,4 @@
+/*
 Ownership is a system  used to manage memory. Set rules are used by the compiler for checks 
 at compiletime. 
 
@@ -23,11 +24,14 @@ Ownership Rules:
 
 Variable Scope
 scope is the range within a program for which an item is valid. for example
+*/
 
     let s = "hello";
 
+/*
 the variable s refers to a string literal that is hardcoded it is valid from the point it is 
 declared until the end of its scope.
+*/
 
 {                      // s is not valid here, it’s not yet declared
     let s = "hello";   // s is valid from this point forward
@@ -35,13 +39,15 @@ declared until the end of its scope.
     // do stuff with s
 }                      // this scope is now over, and s is no longer valid
 
-
+/*
 String Type
 Rust has a type 'String' that is allocated on the heap and is able to store variable amounts
 of text. Can create a String from a string literal using the 'from' function
+*/
 
      let s = String::from("hello");
 
+/*
 the :: operator is an operator that allows us to namespace this particular from function under
 the String type rather than using some sort of name like 'string_from'. This type of string can
 be mutated. 
@@ -65,11 +71,12 @@ automatically at the closing curly bracket.
 Lets discuss this in the context of some common ways multiple variables can interact.
 
 MOVE:
-
+*/
 
 let x = 5;
 let y = x;
 
+/*
 assigns the value of x to y. This is simple because integers are simple values with known fixed sizes. 
 
 With a string its not that simple. A string variable is actuall bound to a structure containing a 
@@ -79,12 +86,14 @@ memory.
 when we assign a string to another variable many other languages copy this structure instead.
 This is known as a shallow copy. both point to the same area in memory. However this could lead
 to a double free which is dangerous. Instead Rust considers s1 no longer valid. 
+*/
 
 let s1 = String::from("hello");
 let s2 = s1;
 
 println!("{}, world!", s1);
- 
+
+/*
 In this case, s1 would cause an error due to an invalidated reference. Functionally, s1 was
 moved to s2. Rust will only free s2 when scope exits.
 
@@ -95,12 +104,14 @@ CLONE:
 
 If we do want to deeply copy the heap data of a string, not just the stack data, we can use
 clone. for example:
+*/
 
 let s1 = String::from("hello");
 let s2 = s1.clone();
 
 println!("s1 = {}, s2 = {}", s1, s2);
 
+/*
 COPY:
 
 Rust has an annotation called the 'Copy' trait that can be placed on types that are stored on the stack entirely. If a type has the copy trait, an older variable is still usable after assignment
@@ -110,6 +121,7 @@ if the type or any of its parts has implemented the drop trait.
 Ownership and Functions
 
 Passing a variable into a function will move or copy just as assignment does.
+*/
 
 fn main() {
     let s = String::from("hello");  // s comes into scope
@@ -135,7 +147,7 @@ fn makes_copy(some_integer: i32) { // some_integer comes into scope
     println!("{}", some_integer);
 } // Here, some_integer goes out of scope. Nothing special happens.
 
-Return values can also transfer ownership.
+//Return values can also transfer ownership.
 
 fn main() {
     let s1 = gives_ownership();         // gives_ownership moves its return

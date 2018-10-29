@@ -1,3 +1,4 @@
+/* 
 Methods are similar to functions. They are declared with the 
 fn keyword and their name, they can have parameters and a 
 return value. They contain code that is run when theyre 
@@ -13,6 +14,7 @@ we start with an impl (implementation) block. the area
 function will be defined within the block, with the first 
 and in this case, the only parameter being self. we then 
 call this method with dot notation. 
+*/
 
 #[derive(Debug)]
 struct Rectangle {
@@ -35,6 +37,7 @@ fn main() {
     );
 } 
 
+/*
 We use &self in the signature for area instead of &Rectangle 
 because the type of self can be inferred due to being in the 
 impl block for Rectangle. Methods can take ownership of 
@@ -48,6 +51,7 @@ functions, not methods, because they dont have an instance
 of the struct to work with. Associated functions are often 
 used for constructors that will return a new instance of the
 struct. For example.
+*/
 
 impl Rectangle {
     fn square(size: u32) -> Rectangle {
@@ -55,8 +59,10 @@ impl Rectangle {
     }
 }
 
+/*
 To call this, we use the :: syntak with the struct name:
 let sq = Rectangle::square(3);
 
 You can have multiple impl blocks for a single struct. This 
 is not always useful but it is valid syntax.
+*/
